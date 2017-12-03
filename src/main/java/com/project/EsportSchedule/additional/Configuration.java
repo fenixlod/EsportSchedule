@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import com.project.EsportSchedule.data.ISportsDAO;
 import com.project.EsportSchedule.data.SportsDAO;
@@ -29,4 +30,11 @@ public class Configuration extends WebMvcConfigurerAdapter {
         //dataSource.setPassword("P@ssw0rd");
         return dataSource;
     }
+    
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry
+          .addResourceHandler("/files/**")
+          .addResourceLocations("file:/opt/files/");
+     }
 }
